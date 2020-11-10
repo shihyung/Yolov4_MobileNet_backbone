@@ -8,7 +8,7 @@ Yolov4:
 ![images/1_mbnv3.png](images/1_mbnv3.png)
 ***
 ## yaml 檔修改
-##### 原始的 Yolov4 yaml 檔案的 backbone
+##### 原始的 Yolov4_L yaml 檔案的 backbone
 ![images/2_yolo_yaml.png](images/2_yolo_yaml.png)
 ##### 修改後的 Yolov4_L_MobileNet_V2 yaml
 ![images/2_yolo_yaml_mbnv2.png](images/2_yolo_yaml_mbnv2.png)  
@@ -99,7 +99,25 @@ class mb3Block(nn.Module):
 ```
 ***
 ## parameter 變化量
-### 原始的 Yolov4
+### 原始的 Yolov4_S
+```
+                 from  n    params  module                                  arguments
+  0                -1  1       464  models.common.Conv                      [3, 16, 3, 1]
+  1                -1  1      4672  models.common.Conv                      [16, 32, 3, 2]
+  2                -1  1      5216  models.common.Bottleneck                [32, 32]
+  3                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  4                -1  1     19904  models.common.BottleneckCSP             [64, 64, 1]
+  5                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  6                -1  1    161152  models.common.BottleneckCSP             [128, 128, 3]
+  7                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  8                -1  1    641792  models.common.BottleneckCSP             [256, 256, 3]
+  9                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+ 10                -1  1   1248768  models.common.BottleneckCSP             [512, 512, 1]
+ 11                -1  1   1904640  models.common.SPPCSP                    [512, 256, 1]
+ 
+ Model Summary: 226 layers, 9.12461e+06 parameters, 9.12461e+06 gradients
+```
+### 原始的 Yolov4_L
 ```
                  from  n    params  module                                  arguments
   0                -1  1       928  models.common.Conv                      [3, 32, 3, 1]
@@ -114,7 +132,6 @@ class mb3Block(nn.Module):
   9                -1  1   4720640  models.common.Conv                      [512, 1024, 3, 2]
  10                -1  1  12858368  models.common.BottleneckCSP             [1024, 1024, 4]
  11                -1  1   7610368  models.common.SPPCSP                    [1024, 512, 1]
- 
 Model Summary: 334 layers, 5.25155e+07 parameters, 5.25155e+07 gradients
 ```
 ### 修改後的 Yolov4_MobileNet_v2
